@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mk体育 · 日常查询与对照</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f4f9fc;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1d2b36;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* hero */
+    .hero {
+      background: linear-gradient(145deg, #e0f0f5 0%, #c8e3ed 100%);
+      border-radius: 36px;
+      padding: 48px 28px 40px;
+      margin-bottom: 48px;
+      box-shadow: 0 12px 24px -10px rgba(40, 110, 130, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(70, 170, 190, 0.08) 0%, transparent 70%);
+      bottom: -40px;
+      right: -30px;
+      border-radius: 50%;
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #0f3b44;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 640px;
+      color: #1f4f5d;
+      position: relative;
+      z-index: 1;
+    }
+    .hero a {
+      display: inline-block;
+      margin-top: 24px;
+      background: #1b6f7e;
+      color: white;
+      padding: 12px 32px;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      box-shadow: 0 4px 8px rgba(0,60,70,0.12);
+      transition: background 0.2s, transform 0.1s;
+    }
+    .hero a:hover {
+      background: #0f5563;
+      transform: scale(1.01);
+    }
+
+    /* 网格卡片区（优势+说明混合） */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 28px 22px;
+      box-shadow: 0 4px 12px rgba(30, 80, 90, 0.06);
+      border: 1px solid #daeef5;
+      transition: box-shadow 0.2s;
+    }
+    .card:hover {
+      box-shadow: 0 8px 20px rgba(30, 100, 115, 0.10);
+    }
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #0e4a56;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card h3::before {
+      content: '▹';
+      color: #2b909e;
+      font-size: 1.2rem;
+    }
+    .card p {
+      color: #2c4a55;
+      font-size: 0.95rem;
+    }
+    .card .meta-tag {
+      display: inline-block;
+      margin-top: 14px;
+      background: #ddf0f6;
+      padding: 4px 14px;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      color: #11525f;
+      letter-spacing: 0.02em;
+    }
+
+    /* 说明区：对照阅读 */
+    .note-section {
+      background: #e7f3f8;
+      border-radius: 32px;
+      padding: 36px 28px;
+      margin-bottom: 48px;
+      border-left: 6px solid #2696a8;
+    }
+    .note-section h2 {
+      font-size: 1.7rem;
+      font-weight: 450;
+      color: #10424e;
+      margin-bottom: 18px;
+    }
+    .note-section p {
+      margin-bottom: 14px;
+      color: #1a4653;
+    }
+    .note-section a {
+      color: #117485;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 500;
+    }
+    .note-section a:hover {
+      color: #06414d;
+    }
+
+    /* FAQ摘要 */
+    .faq-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 30px;
+      margin-bottom: 50px;
+      background: white;
+      border-radius: 28px;
+      padding: 32px 28px;
+      box-shadow: 0 4px 14px rgba(30, 70, 80, 0.04);
+      border: 1px solid #d1e4ec;
+    }
+    .faq-summary h2 {
+      grid-column: 1 / -1;
+      font-weight: 450;
+      font-size: 1.5rem;
+      color: #0f444f;
+      margin-bottom: 4px;
+    }
+    .faq-item {
+      border-bottom: 1px dashed #c6dee8;
+      padding-bottom: 10px;
+    }
+    .faq-item strong {
+      display: block;
+      font-weight: 600;
+      color: #135561;
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+    }
+    .faq-item p {
+      color: #2c4f5c;
+      font-size: 0.9rem;
+    }
+    .faq-item:last-of-type {
+      border-bottom: none;
+    }
+
+    /* 底部链接 */
+    .footer-links {
+      border-top: 1px solid #cde1ea;
+      padding-top: 28px;
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.9rem;
+      color: #336c7a;
+    }
+    .footer-links a {
+      color: #136472;
+      text-decoration: none;
+      border-bottom: 1px dotted #92c2cf;
+    }
+    .footer-links a:hover {
+      border-bottom-color: #044451;
+      color: #043a44;
+    }
+    .footer-links .dot {
+      color: #8cb8c7;
+      margin: 0 10px;
+    }
+
+    /* 移动端调整 */
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .hero {
+        padding: 32px 18px;
+      }
+      .faq-summary {
+        grid-template-columns: 1fr;
+        padding: 24px 18px;
+      }
+      .note-section {
+        padding: 26px 18px;
+      }
+      .grid-cards {
+        grid-template-columns: 1fr;
+      }
+      .footer-links {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- hero -->
+    <div class="hero">
+      <h1>日常对照 · 延伸阅读</h1>
+      <p>从赛程查询到趋势观察，<a href="https://home-index-mksport.com" style="background: none; padding: 0; box-shadow: none; color: #094e5c; text-decoration: underline; display: inline; font-weight: 600;">mk体育</a> 为关注体育信息的人提供了一种稳静的参照方式。没有喧哗，只有数据与节奏。</p>
+      <a href="https://home-index-mksport.com">mk体育</a>
+    </div>
+
+    <!-- 优势 + 说明 (网格卡片) -->
+    <div class="grid-cards">
+      <div class="card">
+        <h3>对照式结构</h3>
+        <p>赛事列表、积分变化、近期状态并排呈现，方便快速对比，适合需要横向查阅的日常场景。</p>
+        <span class="meta-tag">并列视图</span>
+      </div>
+      <div class="card">
+        <h3>延伸索引</h3>
+        <p>每个条目可关联往期记录与相关队伍数据，从一场比赛延伸至赛季脉络，阅读深度自然递进。</p>
+        <span class="meta-tag">链式查阅</span>
+      </div>
+      <div class="card">
+        <h3>低噪点界面</h3>
+        <p>克制使用动效与弹窗，信息层级清晰，不干扰注意，适合长时间停留翻阅。</p>
+        <span class="meta-tag">沉浸阅读</span>
+      </div>
+      <div class="card">
+        <h3>移动端适配</h3>
+        <p>卡片布局随屏幕宽度自动调整，字段缩略与展开自然，单手操作也流畅。</p>
+        <span class="meta-tag">响应式</span>
+      </div>
+    </div>
+
+    <!-- 说明区：从日常查询到对照阅读 -->
+    <div class="note-section">
+      <h2>从查询到对照</h2>
+      <p>体育信息的价值往往不在于单次浏览，而在于反复参照与比较。比如查看一支球队近五场表现，或者对比两个联赛的同轮次比分——这些日常动作背后，是结构化的信息陈列在起作用。</p>
+      <p><a href="https://home-index-mksport.com">mk体育</a> 尝试将数据与叙述结合，让页面既可以作为快速查找的工具，也能提供安静延伸阅读的空间。你可以在同一界面里完成「定位 — 对照 — 记录」的循环，不必频繁跳转。</p>
+      <p>从一场比赛到一个赛季，从一条新闻到一系列统计，阅读的层次由你自己选择。</p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-summary">
+      <h2>常见问题 · 摘要</h2>
+      <div class="faq-item">
+        <strong>页面信息更新频率如何？</strong>
+        <p>通常跟随赛程节奏，每日进行数据同步，重大赛事期间会加密对照批次。具体以实际显示为准。</p>
+      </div>
+      <div class="faq-item">
+        <strong>能否按队伍或联赛筛选？</strong>
+        <p>当前版本支持关键词检索与分类标签过滤，可快速缩小范围。更多筛选维度在迭代计划中。</p>
+      </div>
+      <div class="faq-item">
+        <strong>移动端与桌面端内容一致吗？</strong>
+        <p>内容主体完全一致，仅卡片排列与交互元素根据屏幕尺寸做适配，保持阅读连续感。</p>
+      </div>
+      <div class="faq-item">
+        <strong>适合用来做长期追踪吗？</strong>
+        <p>如果你习惯以对照方式观察趋势，这里的结构会比较顺手。建议搭配个人笔记使用。</p>
+      </div>
+    </div>
+
+    <!-- 底部链接 -->
+    <div class="footer-links">
+      <div>
+        <a href="https://home-index-mksport.com">mk体育</a>
+        <span class="dot">·</span>
+        <span>日常对照 · 延伸索引</span>
+      </div>
+      <div>
+        <span>页面仅供示意 · 内容持续变化</span>
+        <span class="dot">·</span>
+        <span>2025</span>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
